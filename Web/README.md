@@ -58,3 +58,8 @@ pnpm preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+thư mục types định nghĩa Typescript interface - class   .TS
+thư mục utils gồm các hàm tiện ích  .TS
+thư mục composables gồm các file .TS quan trọng
