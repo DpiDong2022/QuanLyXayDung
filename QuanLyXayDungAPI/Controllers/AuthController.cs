@@ -32,18 +32,18 @@ namespace QuanLyXayDungAPI.Controllers {
             // check password
             // if valid, create token and return
             if (string.IsNullOrEmpty(request.Email))
-                return BadRequest(new { message = "Email không được để trống!" });
+                return BadRequest(new LoginResponse { Message = "Email không được để trống!" });
             if (string.IsNullOrEmpty(request.Password))
-                return BadRequest(new { message = "Mật khẩu không được để trống!" });
+                return BadRequest(new LoginResponse { Message = "Mật khẩu không được để trống!" }); 
 
             var appUser = await _userService.GetByEmailAsync(request.Email);
             if (appUser == null) {
-                return BadRequest(new { message = "Email hoặc mật khẩu không đúng!" });
+                return BadRequest(new LoginResponse { Message = "Email hoặc mật khẩu không đúng!" });
             }
 
             var verifyResult = _passwordHasher.VerifyHashedPassword(appUser, appUser.PasswordHash, request.Password);
             if (verifyResult != PasswordVerificationResult.Success) {
-                return BadRequest(new { message = "Email hoặc mật khẩu không đúng!" });
+                return BadRequest(new LoginResponse { Message = "Email hoặc mật khẩu không đúng!" });
             }
 
             var token = _jwtService.GenerateToken(appUser);
@@ -60,7 +60,7 @@ namespace QuanLyXayDungAPI.Controllers {
         [HttpGet("me")]
         [Authorize]
         public IActionResult Me() {
-            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var congTyID = User.FindFirst("congty_id")?.Value;
             var tenCongTy = User.FindFirst("ten_congty")?.Value;
             var hoTen = User.FindFirst(ClaimTypes.Name)?.Value;
@@ -68,7 +68,6 @@ namespace QuanLyXayDungAPI.Controllers {
             var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             return Ok(new {
-                UserID = userID,
                 CongTyID = congTyID,
                 TenCongTy = tenCongTy,
                 HoTen = hoTen,
