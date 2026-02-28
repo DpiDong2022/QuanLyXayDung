@@ -13,7 +13,11 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-01-15',
-
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL || 'https://localhost:7097/api'
+    }
+  },
   eslint: {
     config: {
       stylistic: {
@@ -21,5 +25,6 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  }
+  },
+  srcDir: 'app/'
 })

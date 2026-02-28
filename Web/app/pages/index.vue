@@ -37,22 +37,34 @@
       <template #header>
         <h3 class="font-bold">Công Trình Gần Đây</h3>
       </template>
-      <UTable :rows="congTrinhs" :columns="columns" />
+      <UTable :data="congTrinhs" :columns="columns" />
     </UCard>
   </div>
 </template>
 
 <script setup>
 const columns = [
-  { key: 'ten', label: 'Tên Công Trình' },
-  { key: 'diaDiem', label: 'Địa Điểm' },
-  { key: 'tienDo', label: 'Tiến Độ' },
-  { key: 'trangThai', label: 'Trạng Thái' },
+  {
+    accessorKey: 'ten',
+    header: 'Tên Công Trình'
+  },
+  {
+    accessorKey: 'diaDiem',
+    header: 'Địa Điểm'
+  },
+  {
+    accessorKey: 'tienDo',
+    header: 'Tiến Độ'
+  },
+  {
+    accessorKey: 'trangThai',
+    header: 'Trạng Thái'
+  }
 ]
 
 const congTrinhs = [
   { ten: 'Chung cư Sunrise', diaDiem: 'TP.HCM', tienDo: '75%', trangThai: 'Đang thi công' },
   { ten: 'Cầu Bình Lợi', diaDiem: 'Bình Dương', tienDo: '40%', trangThai: 'Đang thi công' },
-  { ten: 'Nhà máy ABC', diaDiem: 'Đồng Nai', tienDo: '95%', trangThai: 'Sắp hoàn thành' },
+  { ten: 'Nhà máy ABC', diaDiem: 'Đồng Nai', tienDo: '95%', trangThai: 'Sắp hoàn thành' }
 ]
 </script>
