@@ -12,6 +12,5 @@ namespace Application.Models {
         public string Role { get; set; } = "";
         public Guid CongTyID { get; set; }
         public string TenCongTy { get; set; } = "";
-        public string Message { get; set; } = "";
     }
 }

@@ -3,6 +3,9 @@
 // Wrapper gọi ASP.NET API với JWT Token
 // ============================================
 
+import type { BaseResponse } from '~/types/ApiResponse'
+import type { FetchError } from 'ofetch'
+
 export const useApi = () => {
   const config = useRuntimeConfig()
   const baseURL = config.public.apiUrl // http://localhost:5000/api
@@ -122,10 +125,10 @@ export const useAuth = () => {
       } else {
         await router.push('/')
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Login error:', err)
 
-      error.value = err?.data?.message || err?.statusMessage || 'Đăng nhập thất bại'
+      error.value = (err as FetchError<BaseResponse>)?.data?.message || 'Đăng nhập thất bại'
     } finally {
       loading.value = false
     }

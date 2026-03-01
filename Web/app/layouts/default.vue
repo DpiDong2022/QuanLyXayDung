@@ -12,7 +12,7 @@
           📊 Dashboard
         </NuxtLink>
         <NuxtLink to="/cong-trinh" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
-          🏢 Công Trình
+          🚧 Công Trình
         </NuxtLink>
         <NuxtLink to="/nhan-cong" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
           👷 Nhân Công
@@ -20,22 +20,30 @@
         <NuxtLink to="/vat-tu" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
           🧱 Vật Tư
         </NuxtLink>
+        <NuxtLink to="/cong-ty" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
+          🏢 Doanh nghiệp
+        </NuxtLink>
+        <NuxtLink to="/tai-khoan" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
+          👤 Tài khoản
+        </NuxtLink>
         <NuxtLink to="/bao-cao" class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
           📈 Báo Cáo
         </NuxtLink>
-        <UButton
-          icon="i-heroicons-arrow-right-on-rectangle"
-          color="error"
-          variant="ghost"
-          @click="logout"
-        >
-          Đăng xuất
-        </UButton>
+        <NuxtLink class="flex items-center gap-2 p-2 rounded hover:bg-gray-700">
+          <UButton
+            icon="i-heroicons-arrow-right-on-rectangle"
+            color="error"
+            variant="ghost"
+            @click="logout"
+          >
+            Đăng xuất
+          </UButton>
+        </NuxtLink>
       </nav>
     </aside>
 
     <!-- Main content -->
-    <main class="flex-1 p-6 overflow-auto bg-gray-100">
+    <main class="flex-1 p-4 overflow-auto bg-gray-100">
       <slot />
     </main>
   </div>

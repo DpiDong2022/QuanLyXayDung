@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,31 +27,20 @@ namespace Application.Services {
         }
 
         public async Task<Guid> Insert(CongTy entity) {
-            await _uow.BeginTransactionAsync();
-
             try {
-                var existingCongTy = await _congTyRepository.GetByID(entity.ID);
-                if (existingCongTy != null) {
-                    throw new Exception("Công ty đã tồn tại");
-                }
                 var result = await _congTyRepository.Insert(entity);
-                await _uow.CommitAsync();
                 return result;
-            } catch (Exception ex) {
-                await _uow.RollbackAsync();
-                throw;
+            }
+            catch (PostgresException ex) when (ex.SqlState == "23505") {
+                throw new Exception("Mã số thuế đã tồn tại");
             }
         }
 
         public async Task Update(CongTy entity) {
-            await _uow.BeginTransactionAsync();
             try {
                 await _congTyRepository.Update(entity);
-                await _uow.CommitAsync();
-            }
-            catch (Exception ex) {
-                await _uow.RollbackAsync();
-                throw;
+            } catch (PostgresException ex) when (ex.SqlState == "23505") {
+                throw new Exception("Mã số thuế đã tồn tại");
             }
         }
 

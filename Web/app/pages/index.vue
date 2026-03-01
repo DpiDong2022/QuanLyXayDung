@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-2xl font-bold mb-6">
-      Dashboard Tổng Quan
+      Thông tin Tổng Quan
     </h2>
 
     <!-- Thống kê -->

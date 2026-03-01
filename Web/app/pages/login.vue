@@ -16,8 +16,9 @@
             type="email"
             placeholder="you@congty.vn"
             icon="i-heroicons-envelope"
-            size="lg"
+            size="xl"
             :disabled="loading"
+            class="w-full"
           />
         </UFormField>
 
@@ -26,29 +27,30 @@
             v-model="password"
             :type="hienMatKhau ? 'text' : 'password'"
             :ui="{ trailing: 'pe-1' }"
+            class="w-full"
+            size="xl"
           >
             <template #trailing>
               <UButton
                 color="neutral"
                 variant="link"
-                size="sm"
+                size="xl"
                 :icon="hienMatKhau ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'"
                 :aria-label="hienMatKhau ? 'Hide password' : 'Show password'"
                 :aria-pressed="hienMatKhau"
                 aria-controls="password"
                 @click="hienMatKhau = !hienMatKhau"
-              >
-              </UButton>
+              />
             </template>
           </UInput>
         </UFormField>
 
-        <UAlert v-if="error" :description="error" color="error" icon="i-heroicons-exclamation-circle"/>
+        <UAlert v-if="error" :description="error" color="error" icon="i-heroicons-exclamation-circle" class="p-3"/>
 
         <UButton
           type="submit"
           color="primary"
-          size="lg"
+          size="xl"
           block
           :loading="loading"
           icon="i-heroicons-arrow-right-end-on-rectangle"
@@ -65,8 +67,12 @@
             <NuxtBadge color="blue" size="xs">Admin</NuxtBadge>
             <span>admin@gmail.com</span>
           </button>
-          <button class="demo-item" @click="dienMau('staff@xdmn.vn', 'admin123')">
-            <NuxtBadge color="gray" size="xs">Staff</NuxtBadge>
+          <button class="demo-item" @click="dienMau('chu@gmail.com', '123')">
+            <NuxtBadge color="gray" size="xs">Chủ công ty</NuxtBadge>
+            <span>staff@xdmn.vn</span>
+          </button>
+          <button class="demo-item" @click="dienMau('nhanvien@gmail.com', '123')">
+            <NuxtBadge color="gray" size="xs">Nhân viên</NuxtBadge>
             <span>staff@xdmn.vn</span>
           </button>
         </div>

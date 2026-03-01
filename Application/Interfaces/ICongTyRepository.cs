@@ -9,6 +9,7 @@ namespace Application.Interfaces {
     public interface ICongTyRepository : IBaseRepository {
         Task<IEnumerable<CongTy>> GetList();
         Task<CongTy> GetByID(Guid id);
+        Task<CongTy> Get(CongTy congTy);
         Task<Guid> Insert(CongTy entity);
         Task Update(CongTy entity);
         Task Delete(Guid id);
